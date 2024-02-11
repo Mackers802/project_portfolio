@@ -1,0 +1,95 @@
+$breakpoint-xsmall: 319px !default;
+$breakpoint-small: 576px !default;
+$breakpoint-medium: 768px !default;
+$breakpoint-large: 992px !default;
+$breakpoint-xlarge: 1240px !default;
+$breakpoint-xxlarge: 1440px !default;
+
+@mixin media-breakpoint-xsmall {
+    @media screen and (max-device-width: #{$breakpoint-xsmall}), (max-width: #{$breakpoint-xsmall}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-small {
+    @media screen and (max-device-width: #{$breakpoint-small}), (max-width: #{$breakpoint-small}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-small-down {
+    @media screen and (max-device-width: #{$breakpoint-small}), (max-width: #{$breakpoint-small}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-medium {
+    @media screen and (max-device-width: #{$breakpoint-medium}) and (min-device-width: #{$breakpoint-small + 1px}), (max-width: #{$breakpoint-medium}) and (min-width: #{$breakpoint-small + 1px}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-medium-up {
+    @media screen and (min-device-width: #{$breakpoint-small + 1px}), (min-width: #{$breakpoint-small + 1px}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-medium-down {
+    @media screen and (max-device-width: #{$breakpoint-medium}), (max-width: #{$breakpoint-medium}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-large {
+    @media screen and (max-device-width: #{$breakpoint-large}) and (min-device-width: #{$breakpoint-medium + 1px}), (max-width: #{$breakpoint-large}) and (min-width: #{$breakpoint-medium + 1px}) {
+        @content;
+    }
+} 
+@mixin media-breakpoint-large-up {
+    @media screen and (min-device-width: #{$breakpoint-medium + 1px}), (min-width: #{$breakpoint-medium + 1px}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-large-down {
+    @media screen and (max-device-width: #{$breakpoint-large}), (max-width: #{$breakpoint-large}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-xlarge {
+    @media screen and (max-device-width: #{$breakpoint-xlarge}) and (min-device-width: #{$breakpoint-large + 1px}), (max-width: #{$breakpoint-xlarge}) and (min-width: #{$breakpoint-large + 1px}) {
+        @content;
+    }
+} 
+@mixin media-breakpoint-xlarge-up {
+    @media screen and (min-device-width: #{$breakpoint-large + 1px}), (min-width: #{$breakpoint-large + 1px}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-xlarge-down {
+    @media screen and (max-device-width: #{$breakpoint-xlarge}), (max-width: #{$breakpoint-xlarge}) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-xxlarge(){
+    @media screen and (max-device-width: #{$breakpoint-xxlarge}) and (min-device-width: #{$breakpoint-xlarge + 1px}), (max-width: #{$breakpoint-xxlarge}) and (min-width: #{$breakpoint-xlarge + 1px}) {
+        @content;
+    }
+} 
+@mixin media-breakpoint-xxlarge-up {
+    @media screen and (min-device-width: #{$breakpoint-xlarge + 1px}), (min-width: #{$breakpoint-xlarge + 1px}) {
+        @content;
+    }
+}
+@mixin media-breakpoint-xxlarge-down {
+    @media screen and (max-device-width: #{$breakpoint-xxlarge}), (max-width: #{$breakpoint-xxlarge}) {
+        @content;
+    }
+}
+
+@mixin orientation($direction) { 
+    $orientation-landscape: '(orientation:landscape)'; 
+    $orientation-portrait: '(orientation:portrait)';
+
+    @if $direction == landscape {
+        @media screen and #{$orientation-landscape} { @content; } 
+    }
+    @if $direction == portrait {
+        @media screen and #{$orientation-portrait} { @content; } 
+    }
+} 

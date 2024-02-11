@@ -1,0 +1,35 @@
+#doorstep{
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: #333333;
+
+    .polygon1,
+    .polygon2{
+        position: absolute;
+        height: 100vh;
+        width: 100vw;
+        background: url('../../sources/polygon.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+    .polygon1{
+        rotate: 180deg;
+        // top: 0
+    }
+    .polygon2{
+        top: 0
+    }
+
+    .etr-btn{
+        position: fixed;
+        top: 49%;
+        left: 50%;
+        bottom: auto;
+        right: auto;
+
+        
+    }
+}
