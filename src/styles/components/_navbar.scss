@@ -28,11 +28,15 @@
             cursor: pointer;
             color: $nomad;
         }
+
+        &.link-last{
+            padding-right: to-rem(48);
+        }
     }
 
     .dropdowns-parent{
         @include media-breakpoint-large {
-            
+
         }
         display: flex;
         flex-direction: row;
@@ -54,8 +58,20 @@
                 background-color: $shark;
                 list-style: none;
                 padding-left: 0;
+
+                &.submenu-horizontal{
+                    @include media-breakpoint-xlarge-up {
+                        position: fixed;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        flex-direction: row;
+                        width: auto;
+                    }
+                }
             
                 .submenu-link{
+                    display: flex;
+                    justify-content: flex-start;
                     padding: to-rem(16);
                     font-size: to-rem(16);
                     color: $font-white;

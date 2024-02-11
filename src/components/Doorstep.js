@@ -5,11 +5,11 @@ export default function Doorstep() {
   return (
     <>
         <div id="doorstep">
-            <div class="polygon1"></div>
-            <div class="polygon2"></div>
-            <div class="etr-btn">
-                <Link to="/entered">Enter</Link>
-            </div>
+            <div className="polygon1"></div>
+            <div className="polygon2"></div>
+              <Link to="/entered" className="etr-btn"> 
+                <span className="btn-text"> Launch </span>
+              </Link>
         </div>
     </>
   )

@@ -2,7 +2,6 @@ import './App.scss';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Doorstep from './components/Doorstep.js';
 import Body from './components/Body.js';
-import Footer from './components/Footer.js';
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
           <Route path="/entered" element={<Body />} />
         </Routes>
       </Router>
-      <Footer />
     </div>
   );
 }
