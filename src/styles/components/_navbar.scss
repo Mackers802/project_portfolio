@@ -77,6 +77,11 @@
                     color: $font-white;
                     width: -webkit-fill-available;
                     text-align: center;
+                    
+                    a{
+                        color: inherit;
+                        text-decoration: none;
+                    }
 
                     &:hover{
                         cursor: pointer;

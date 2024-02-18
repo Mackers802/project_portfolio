@@ -1,8 +1,3 @@
-@import './variables/main';
-@import './components/navbar';
-@import './components/body';
-@import './components/footer';
-@import './components/content';
-@import './components/about';
-@import './components/doorstep';
-@import './components/languages';
+@import '../styles/variables/main.scss';
+@import '../styles/pages/main.scss';
+@import '../styles/components/main.scss';

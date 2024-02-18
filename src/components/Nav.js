@@ -40,7 +40,7 @@ export default function nav() {
           <li className="submenu-link" > <span> Javascript </span> </li>
           <li className="submenu-link" > <span> Bootstrap </span> </li>
           <li className="submenu-link" > <span> HTML </span> </li>
-          <li className="submenu-link" > <span> Scss/Css </span> </li>
+          <li className="submenu-link" > <Link to="/styles"> <span> Scss/Css </span> </Link> </li>
           <li className="submenu-link" > <span> Smarty </span> </li>
         </ul>
       </div>
