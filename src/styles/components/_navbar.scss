@@ -2,12 +2,14 @@
     @include media-breakpoint-large {
         // background-color: red;
     }
+    position: relative;
     display: flex;
     flex-direction: row;
     align-content: center;
     justify-content: space-between;
     background-color: $shark;
     font-family: $font-family-default;
+    z-index: 50;
 
     .previous-parent{
         .previous{
