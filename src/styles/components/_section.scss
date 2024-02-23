@@ -30,16 +30,34 @@
         border-top-left-radius: to-rem(6);
         border-top-right-radius: to-rem(6);
 
+        .toggle_title-arrow{
+            .fa-angle-down,
+            .fa-angle-up{
+                font-family: $font-family-icon;
+                font-size: to-rem(24);
+                color: $shark;
+            }
+        }
+
         &:hover{
             cursor: pointer;
         }
     }
     .section-body{
         padding-top: to-rem(25);
+        padding-right: to-rem(25);
         padding-bottom: to-rem(25);
+        padding-left: to-rem(25);
 
         &.remove-padding{
             padding: 0 !important;
         }
+    }
+
+    &:first-child{
+        margin-top: to-rem(25);
+    }
+    &:last-child{
+        margin-bottom: to-rem(25);
     }
 }

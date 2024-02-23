@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     gap: to-rem(50);
-    margin-top: to-rem(25);
 
     .buttons{
         @include media-breakpoint-medium-down {
@@ -20,7 +19,7 @@
         display: grid;
         grid-template-columns: repeat(4, minmax(to-rem(50), 1fr));
         grid-template-rows: auto;
-        margin: auto to-rem(25);
+        // margin: auto to-rem(25);
         gap: to-rem(20);
     }
 

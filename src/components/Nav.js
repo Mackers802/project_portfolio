@@ -37,7 +37,7 @@ export default function nav() {
           <li className="submenu-link" > <span> React </span> </li>
           <li className="submenu-link" > <span> Python </span> </li>
           <li className="submenu-link" > <span> PHP </span> </li>
-          <li className="submenu-link" > <span> Javascript </span> </li>
+          <li className="submenu-link" > <Link to="/javascript"> <span> Javascript </span> </Link> </li>
           <li className="submenu-link" > <span> Bootstrap </span> </li>
           <li className="submenu-link" > <span> HTML </span> </li>
           <li className="submenu-link" > <Link to="/styles"> <span> Scss/Css </span> </Link> </li>
