@@ -1,6 +1,10 @@
 #javascript{
+    position: relative;
     #calculator{
-
-        // background-color: $shark;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
     }
 }

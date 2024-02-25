@@ -1,0 +1,141 @@
+
+.orientation{
+    position: absolute;
+    right: to-rem(60);
+    font-size: to-rem(32);
+
+    &.vertical{
+        animation-name: orientation-horizontal;
+        animation-delay: 2s;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+    
+        @keyframes orientation-horizontal {
+            from {rotate: 0Deg}
+            to {rotate: 90Deg}
+        }
+    }
+
+    &.horizontal{
+        display: none;
+        animation-name: orientation-vertical;
+        animation-delay: 2s;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+
+        @keyframes orientation-vertical {
+            0% {rotate: 90Deg}
+            100% {rotate: 00Deg}
+        }
+    }
+}
+
+$--border-radius: to-rem(52);
+.iphone{
+    position: relative;
+    width: to-rem(340);
+    height: to-rem(690);
+    border: 1px solid $iphone-black;
+    border-radius: $--border-radius;
+    background-color: $iphone-black;
+    margin: auto;
+
+    .top,
+    .bottom{
+        position: relative;
+        width: 100%;
+    }
+
+    .top{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: to-rem(36);
+        top: to-rem(8);
+        gap: to-rem(16);
+
+        span{
+            display: inherit;
+            flex-direction: row;
+            align-items: center;
+            font-size: to-rem(12);
+            color: $font-white;
+        }
+        .clock{
+            position: absolute;
+            left: 10%;
+            gap: to-rem(4);
+            .time,
+            .bookmark{
+                font-weight: 700
+            }
+        }
+        .features{
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            gap: to-rem(8);
+            justify-content: space-evenly;
+        }
+        .information{
+            position: absolute;
+            right: 10%;
+            gap: to-rem(8);
+            font-weight: 600;
+        }
+    }
+    .content{
+        position: relative;
+        display: flex;
+        width: 95%;
+        height: 90%;
+        margin: auto;
+        border: 1px solid white;
+    }
+    .bottom{
+        position: absolute;
+        top: 98%;
+        display: flex;
+        justify-content: center;
+
+        .swipe{
+            width: to-rem(120);
+            height: to-rem(4);
+            background-color: $font-white;
+            border-radius: to-rem(8);
+        }
+    }
+
+    &.vertical{
+        animation-name: vertical;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+    
+        @keyframes vertical {
+            from {rotate: 90Deg}
+            to {rotate: 0Deg}
+        }
+    }
+
+    &.horizontal{
+        .top,
+        .bottom{
+            display: none;
+        }
+        .content{
+            width: 100%;
+            height: 100%;
+            border-radius: $--border-radius;
+        }
+
+        animation-name: iphone-horizontal;
+        animation-duration: 3s;
+        animation-fill-mode: forwards;
+    
+        @keyframes iphone-horizontal {
+            from {rotate: 0Deg}
+            to {rotate: 90Deg}
+        }
+    }
+}

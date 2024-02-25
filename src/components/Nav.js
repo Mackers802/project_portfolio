@@ -1,8 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faCss3, faGit, faGithub, faHtml5, faJs, faLinkedin, faMdb, faNode, faReact } from "@fortawesome/free-brands-svg-icons"
 import { faArrowRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default function nav() {
