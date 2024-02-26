@@ -3,6 +3,9 @@
     position: absolute;
     right: to-rem(60);
     font-size: to-rem(32);
+    &:hover{
+        cursor: pointer;
+    }
 
     &.vertical{
         animation-name: orientation-horizontal;
@@ -35,8 +38,8 @@ $--border-radius: to-rem(52);
     position: relative;
     width: to-rem(340);
     height: to-rem(690);
-    border: 1px solid $iphone-black;
     border-radius: $--border-radius;
+    border-style: none;
     background-color: $iphone-black;
     margin: auto;
 
@@ -91,7 +94,6 @@ $--border-radius: to-rem(52);
         width: 95%;
         height: 90%;
         margin: auto;
-        border: 1px solid white;
     }
     .bottom{
         position: absolute;
