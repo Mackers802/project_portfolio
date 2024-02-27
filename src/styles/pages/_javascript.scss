@@ -17,8 +17,12 @@
             position: absolute;
             bottom: 60%;
             right: 10%;
+            max-width: to-rem(270);
             font-size: to-rem(50);
             font-weight: 200;
+            overflow: hidden;
+            white-space: wrap;
+            text-overflow: ellipsis;
         }
         .basic{
             position: absolute;

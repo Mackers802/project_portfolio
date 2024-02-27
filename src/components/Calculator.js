@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
-// import { faMultiply } from '@fortawesome/free-solid-svg-icons';
 
 export default function Calculator() {
     const [ value, setValue ] = useState('0')
@@ -8,57 +7,71 @@ export default function Calculator() {
     const [ operator, setOperator ] = useState(null)
 
     const handleSetMemory = (operator) => {
-        console.log('handleSetMemory')
-        console.log(operator, 'operator')
-        if (operator !== null){
-            if (operator === '+')
+        if (operator !== null) {
+            if (operator === '+') {
                 setMemory(memory + parseFloat(value));
-            else if (operator === '-')
+            } else if (operator === '-') {
                 setMemory(memory - parseFloat(value));
-            else if (operator === 'x') 
+            } else if (operator === 'x') {
                 setMemory(memory * parseFloat(value));
-            else if (operator === '/') 
+            } else if (operator === '/') {
                 setMemory(memory / parseFloat(value));
-        }
-        else{
+            }
+        } else {
             setMemory(parseFloat(value));
         }
     }
+
+    const commaValue = value => {
+        if (value === '0') return value;
+        let output = '';
+        let decimal = '';
+        let isNeg = false;
+
+        if (value.includes('.')) {
+            output = value.substring(0, value.indexOf('.'));
+            decimal = value.substring(value.indexOf('.'));
+        } else {
+            output = value;
+        }
+
+        if (parseFloat(value) < 0) {
+            isNeg = true;
+            output = output.substring(1);
+        }
+      
+        return isNeg
+            ? '-' + parseFloat(output).toLocaleString() + decimal
+            : parseFloat(output).toLocaleString() + decimal;
+    };
     
     const handle_btn_press = (e) =>  { 
         const $this = $(e.target);
         const num = parseFloat(value);
         const content = $this.text();
 
-        console.group()
-        console.log(num, 'num')
-        console.log(content, 'content')
-        console.log(value, "value")
-        console.log(memory, "memory")
-        console.groupEnd();
-
-        if (content === 'AC'){
+        if (content === 'AC') {
             setValue('0');
             setMemory(null);
             setOperator(null);
             return;
         }
 
-        if (content === '+/-'){
+        if (content === '+/-') {
             setValue((num * -1).toString());
             return;
         }
 
-        if (content === '%'){
+        if (content === '%') {
             setValue((num / 100).toString());
             setMemory(null);
-            setOperator(null)
+            setOperator(null);
             return;
-        }
+         }
 
-        if (content === '.'){
+        if (content === '.') {
             if (value.includes('.')) return;
-
+      
             setValue(value + '.');
             return;
         }
@@ -68,7 +81,7 @@ export default function Calculator() {
             setValue('0');
             setOperator('+');
             return;
-          }
+        }
 
         if (content === '-') {
             handleSetMemory(operator);
@@ -77,34 +90,43 @@ export default function Calculator() {
             return;
         }
         
-        if (content === 'x'){
+        if (content === 'x') {
             handleSetMemory(operator);
             setValue('0');
-            setOperator('x')
+            setOperator('x');
             return;
         }
 
-        if (content === '/') { 
+        if (content === '/') {
             handleSetMemory(operator);
             setValue('0');
             setOperator('/');
             return;
         }
 
-        if (content === '='){
+        if (content === '=') {
             if (!operator) return;
+      
+            if (operator === '+') {
+                setValue((memory + parseFloat(value)).toString());
+            } else if (operator === '-') {
+                 setValue((memory - parseFloat(value)).toString());
+            } else if (operator === 'x') {
+                setValue((memory * parseFloat(value)).toString());
+            } else if (operator === '/') {
+                setValue((memory / parseFloat(value)).toString());
+            }
 
-            handleSetMemory(operator);
             setMemory(null);
             setOperator(null);
             return;
         }
 
-        if (value[value.length - 1] === ".") {
+        if (value[value.length - 1] === '.') {
             setValue(value + content);
-          } else {
+        } else {
             setValue(parseFloat(num + content).toString());
-          }
+        }
 
         e.preventDefault();
     }
@@ -118,7 +140,7 @@ export default function Calculator() {
             {id: 'seven', class: 'btn-dark', content: '7', type: 'number'},
             {id: 'eight', class: 'btn-dark', content: '8', type: 'number'},
             {id: 'nine', class: 'btn-dark', content: '9', type: 'number'},
-            {id: 'multiplication', class: 'btn-operator', content: 'X', type: 'operator'},
+            {id: 'multiplication', class: 'btn-operator', content: 'x', type: 'operator'},
             {id: 'four', class: 'btn-dark', content: '4', type: 'number'},
             {id: 'five', class: 'btn-dark', content: '5', type: 'number'},
             {id: 'six', class: 'btn-dark', content: '6', type: 'number'},
@@ -166,7 +188,7 @@ export default function Calculator() {
 
     return (
         <div id="calculator">
-            <div className="display-value">{value}</div>
+            <div className="display-value">{commaValue(value)}</div>
             <div className="basic">{basic_buttons}</div>
         </div>
   )
