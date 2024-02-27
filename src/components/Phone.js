@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import $ from 'jquery';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMobile, faBookmark, faSignal, faWifi, faBatteryFull} from "@fortawesome/free-solid-svg-icons";
@@ -12,6 +12,9 @@ export default function Phone(props) {
         rotate_phone('', $('.orientation.vertical')); 
         $('.orientation.horizontal').hide();
     }
+
+    const date = new Date();
+    let time = date.getHours() +':'+ date.getMinutes();
 
     function rotate_phone(direction, $orientation){
         const $phone = $('.iphone');
@@ -30,7 +33,7 @@ export default function Phone(props) {
         <div className="iphone">
             <div className="top">
                 <span className="clock">
-                    <span className="time">1:30</span>
+                    <span className="time">{ time }</span>
                     <span className="bookmark"><FontAwesomeIcon icon={faBookmark} /></span>
                 </span>
                 <span className="information"> 

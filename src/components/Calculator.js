@@ -1,16 +1,161 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
+// import { faMultiply } from '@fortawesome/free-solid-svg-icons';
 
 export default function Calculator() {
+    const [ value, setValue ] = useState('0')
+    const [ memory, setMemory ] = useState(null)
+    const [ operator, setOperator ] = useState(null)
 
+    const handleSetMemory = (operator) => {
+        console.log('handleSetMemory')
+        console.log(operator, 'operator')
+        if (operator !== null){
+            if (operator === '+')
+                setMemory(memory + parseFloat(value));
+            else if (operator === '-')
+                setMemory(memory - parseFloat(value));
+            else if (operator === 'x') 
+                setMemory(memory * parseFloat(value));
+            else if (operator === '/') 
+                setMemory(memory / parseFloat(value));
+        }
+        else{
+            setMemory(parseFloat(value));
+        }
+    }
+    
+    const handle_btn_press = (e) =>  { 
+        const $this = $(e.target);
+        const num = parseFloat(value);
+        const content = $this.text();
+
+        console.group()
+        console.log(num, 'num')
+        console.log(content, 'content')
+        console.log(value, "value")
+        console.log(memory, "memory")
+        console.groupEnd();
+
+        if (content === 'AC'){
+            setValue('0');
+            setMemory(null);
+            setOperator(null);
+            return;
+        }
+
+        if (content === '+/-'){
+            setValue((num * -1).toString());
+            return;
+        }
+
+        if (content === '%'){
+            setValue((num / 100).toString());
+            setMemory(null);
+            setOperator(null)
+            return;
+        }
+
+        if (content === '.'){
+            if (value.includes('.')) return;
+
+            setValue(value + '.');
+            return;
+        }
+
+        if (content === '+') {
+            handleSetMemory(operator);
+            setValue('0');
+            setOperator('+');
+            return;
+          }
+
+        if (content === '-') {
+            handleSetMemory(operator);
+            setValue('0');
+            setOperator('-');
+            return;
+        }
+        
+        if (content === 'x'){
+            handleSetMemory(operator);
+            setValue('0');
+            setOperator('x')
+            return;
+        }
+
+        if (content === '/') { 
+            handleSetMemory(operator);
+            setValue('0');
+            setOperator('/');
+            return;
+        }
+
+        if (content === '='){
+            if (!operator) return;
+
+            handleSetMemory(operator);
+            setMemory(null);
+            setOperator(null);
+            return;
+        }
+
+        if (value[value.length - 1] === ".") {
+            setValue(value + content);
+          } else {
+            setValue(parseFloat(num + content).toString());
+          }
+
+        e.preventDefault();
+    }
+
+    const calc_buttons = {
+        basic: [
+            {id: 'ac', class: 'btn-light', content: 'AC', type: 'operator'},
+            {id: 'special', class: 'btn-light', content: '+/-', type: 'operator'},
+            {id: 'percentage', class: 'btn-light', content: '%', type: 'operator'},
+            {id: 'division', class: 'btn-light', content: '/', type: 'operator'},
+            {id: 'seven', class: 'btn-dark', content: '7', type: 'number'},
+            {id: 'eight', class: 'btn-dark', content: '8', type: 'number'},
+            {id: 'nine', class: 'btn-dark', content: '9', type: 'number'},
+            {id: 'multiplication', class: 'btn-operator', content: 'X', type: 'operator'},
+            {id: 'four', class: 'btn-dark', content: '4', type: 'number'},
+            {id: 'five', class: 'btn-dark', content: '5', type: 'number'},
+            {id: 'six', class: 'btn-dark', content: '6', type: 'number'},
+            {id: 'subtraction', class: 'btn-operator', content: '-', type: 'operator'},
+            {id: 'one', class: 'btn-dark', content: '1', type: 'number'},
+            {id: 'two', class: 'btn-dark', content: '2', type: 'number'},
+            {id: 'three', class: 'btn-dark', content: '3', type: 'number'},
+            {id: 'addition', class: 'btn-operator', content: '+', type: 'operator'},
+            {id: 'zero', class: 'btn-long btn-dark', content: '0', type: 'number'},
+            {id: 'decimal', class: 'btn-decimal btn-dark', content: '.', type: 'operator'},
+            {id: 'equals', class: 'btn-equal btn-operator', content: '=', type: 'operator'},
+        ],
+        advanced: [
+            
+        ]
+    }
+
+    const basic_buttons = calc_buttons.basic.map((btn, i) => {
+        return <span key={i} id={btn.id} className={'btn ' + btn.class} onClick={handle_btn_press} type={btn.type}>{btn.content}</span>
+    })
+
+    // const advanced_buttons = calc_buttons.advanced.map((btn, i) => {
+    //     return <span id={btn.id} className={'btn ' + btn.class} onClick={handle_btn_press} >{btn.content}</span>
+    // })
+    // <div className="advanced">{advanced_buttons}</div>
+
+    useEffect(() => {
+        checkPhoneOrientation();
+    });
     function checkPhoneOrientation() {
         var orientations = $('.orientation');
         orientations.each((i, el) => {
             const $this = $(el);
             $this.on('click', () => { 
                 const $calculator = $('#calculator');
-                if($calculator.length > 0){
-                    if($this.hasClass('vertical'))
+                if ($calculator.length > 0){
+                    if ($this.hasClass('vertical'))
                         $calculator.addClass('horizontal').removeClass('vertical');
                     else
                         $calculator.addClass('vertical').removeClass('horizontal');
@@ -19,39 +164,10 @@ export default function Calculator() {
         })
     }
 
-    useEffect(() => {
-        checkPhoneOrientation();
-    });
-
-  return (
-    <div id="calculator">
-        <div className="display-value">0</div>
-        <div className="advanced"></div>
-        <div className="basic">
-            <span id="ac" className="btn btn-light">AC</span>
-            <span id="special" className="btn btn-light">+/-</span>
-            <span id="percentage" className="btn btn-light">%</span>
-            <span id="division" className="btn btn-operator">/</span>
-
-            <span id="seven" className="btn btn-dark">7</span>
-            <span id="eight" className="btn btn-dark">8</span>
-            <span id="nine" className="btn btn-dark">9</span>
-            <span id="multiplication" className="btn btn-operator">X</span>
-
-            <span id="four" className="btn btn-dark">4</span>
-            <span id="five" className="btn btn-dark">5</span>
-            <span id="six" className="btn btn-dark">6</span>
-            <span id="subtraction" className="btn btn-operator">-</span>
-
-            <span id="one" className="btn btn-dark">1</span>
-            <span id="two" className="btn btn-dark">2</span>
-            <span id="three" className="btn btn-dark">3</span>
-            <span id="addition" className="btn btn-operator">+</span>
-
-            <span id="zero" className="btn btn-long btn-dark">0</span>
-            <span id="decimal" className="btn btn-decimal btn-dark">.</span>
-            <span id="equals" className="btn btn-equal btn-operator">=</span>
+    return (
+        <div id="calculator">
+            <div className="display-value">{value}</div>
+            <div className="basic">{basic_buttons}</div>
         </div>
-    </div>
   )
 }
