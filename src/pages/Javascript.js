@@ -10,7 +10,7 @@ export default function Javascript() {
     <>
         <Navbar />
         <div id="javascript" className="page">
-            <Section  props={{ title: 'Calculator', child: <Phone props={{ content: <Calculator />, horizontal: true, centered: true }} /> }} />
+            <Section  props={{ title: 'Calculator', section_class: 'calculator-background', child: <Phone props={{ content: <Calculator />, horizontal: true, centered: true }} /> }} />
         </div>
         <Footer />
     </>

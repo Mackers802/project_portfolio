@@ -4,6 +4,7 @@ import gsap from "gsap";
 
 export default function Section(props) {
     const header = props.props.title;
+    const section_class = props.props.section_class;
     const content = props.props.child;
 
     useEffect(() => {
@@ -54,7 +55,7 @@ export default function Section(props) {
           <div className="section-title"><h3>{header}</h3></div>
           <div className="toggle_title-arrow"><i className="fa fa-angle-up"></i></div>
         </div>
-        <div className='section-body' data-status="open" >
+        <div className={'section-body ' + section_class} data-status="open" >
           {content}
         </div>
       </div>

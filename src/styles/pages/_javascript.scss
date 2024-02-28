@@ -1,6 +1,12 @@
 #javascript{
     position: relative;
 
+    .calculator-background{
+        background-image: url('../../sources/white_lines.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
     #calculator{
         position: relative;
         display: flex;
@@ -24,7 +30,8 @@
             white-space: wrap;
             text-overflow: ellipsis;
         }
-        .basic{
+
+        .buttons_wrapper{
             position: absolute;
             bottom: 0;
             display: grid;
@@ -60,6 +67,9 @@
                 &.btn-dark{
                     background-color: $iphone-btn-dark;
                 }
+                &.btn-xtra-dark{
+                    background-color: $iphone-xtra-dark;
+                }
                 &#zero{
                     display: flex;
                     justify-content: flex-start;
@@ -79,27 +89,56 @@
         }
 
         &.vertical{
-
             .display-value{
                 display: grid;
             }
-            .basic{
-                display: grid;
-            }
-            .advanced{
-                display: none;
-            }
 
+            .buttons_wrapper{
+                display: grid;
+
+                .btn{
+                    &.advanced{
+                        display: none;
+                    }
+                }
+            }
         }
         &.horizontal{
             .display-value{
                 display: grid;
+                bottom: 85%;
+                right: 80%;
+                rotate: -90Deg;
             }
-            .basic{
+
+            .buttons_wrapper{
                 display: grid;
-            }
-            .advanced{
-                display: grid;
+                grid-template-columns: repeat(10, 1fr);
+                grid-template-rows: repeat(5, 1fr);
+                rotate: -90Deg;
+                bottom: 12%;
+                left: 15%;
+                gap: to-rem(6);
+
+                .btn{
+                    font-size: to-rem(12);
+                    height: to-rem(12);
+                    width: to-rem(24);
+                    border-radius: to-rem(50);
+
+                    &.btn-long{
+                        border-radius: 3.125rem;
+                        grid-column: 7/9 !important;
+                        margin-right: 0 !important;
+                        width: cacl(100% - to-rem(32)) !important;
+                    }
+                    &.btn-decimal{
+                        grid-column: 9/10 !important;
+                    }
+                    &.btn-equal{
+                        grid-column: 10/11 !important;
+                    }
+                }
             }
         }
     }
